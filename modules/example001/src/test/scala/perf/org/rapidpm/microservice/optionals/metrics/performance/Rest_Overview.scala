@@ -4,7 +4,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import org.rapidpm.microservice.Main
 import org.rapidpm.microservice.Main.{deploy, stop}
-import org.rapidpm.microservice.optionals.metrics.performance.Overview
+import org.rapidpm.microservice.optionals.metrics.performance.Histogramms
 
 class Rest_Overview extends Simulation {
 
@@ -17,7 +17,7 @@ class Rest_Overview extends Simulation {
     .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0")
   val scn = scenario("Overview Test")
     .repeat(1000) {
-      exec(http("request_0001").get(baseURL + Overview.LIST_ALL_HISTOGRAMMS))
+      exec(http("request_0001").get(baseURL + Histogramms.LIST_ALL_HISTOGRAMMS))
       //      exec(http("request_0002").get(baseURL + Overview.LIST_ALL_HISTOGRAMMS))
     }
   private val baseURL: String = "rest/metrics/performance/overview/"
