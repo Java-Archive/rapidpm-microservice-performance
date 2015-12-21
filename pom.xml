@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.rapidpm</groupId>
+    <artifactId>rapidpm-dependencies</artifactId>
+    <version>3.0.3-SNAPSHOT</version>
+  </parent>
+
+
+  <groupId>org.rapidpm.microservice</groupId>
+  <artifactId>rapidpm-microservice-performance</artifactId>
+  <packaging>pom</packaging>
+  <version>0.0.5-SNAPSHOT</version>
+  <modules>
+    <module>modules</module>
+  </modules>
+
+
+  <inceptionYear>2013</inceptionYear>
+  <organization>
+    <name>RapidPM</name>
+    <url>http://www.rapidpm.org</url>
+  </organization>
+  <scm>
+    <url>https://github.com/RapidPM/rapidpm-microservice-performance</url>
+    <connection>scm:git:https://github.com/RapidPM/rapidpm-microservice-performance.git</connection>
+    <developerConnection>scm:git:https://github.com/RapidPM/rapidpm-microservice-performance.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+  <developers>
+    <developer>
+      <name>Sven Ruppert</name>
+      <email>sven.ruppert@gmail.com</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
+  <issueManagement>
+    <system>Github</system>
+    <url>https://github.com/RapidPM/rapidpm-microservice-performance/issues</url>
+  </issueManagement>
+  <ciManagement>
+    <system>TravisCI</system>
+    <url>https://travis-ci.org/RapidPM/rapidpm-microservice/performance</url>
+  </ciManagement>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>org.rapidpm.microservice</groupId>
+      <artifactId>rapidpm-microservice-modules-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.rapidpm.microservice</groupId>
+      <artifactId>rapidpm-microservice-modules-optionals-metrics-performance</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>fluent-hc</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.gatling.highcharts</groupId>
+      <artifactId>gatling-charts-highcharts</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
