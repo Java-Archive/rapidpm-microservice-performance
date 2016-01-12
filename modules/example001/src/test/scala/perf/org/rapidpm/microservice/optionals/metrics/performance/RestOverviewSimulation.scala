@@ -6,7 +6,7 @@ import org.rapidpm.microservice.Main
 import org.rapidpm.microservice.Main.{deploy, stop}
 import org.rapidpm.microservice.optionals.metrics.performance.Histogramms
 
-class Rest_Overview extends Simulation {
+class RestOverviewSimulation extends Simulation {
 
   val httpConf = http
     .baseURL("http://" + Main.DEFAULT_HOST + ":" + Main.DEFAULT_REST_PORT + "/") // Here is the root for all relative URLs

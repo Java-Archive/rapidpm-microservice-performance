@@ -32,6 +32,7 @@
         <artifactId>gatling-maven-plugin</artifactId>
         <configuration>
           <!--<failOnError>false</failOnError>-->
+          <simulationClass>perf.org.rapidpm.microservice.optionals.metrics.performance.RestOverviewSimulation</simulationClass>
         </configuration>
         <executions>
           <execution>
