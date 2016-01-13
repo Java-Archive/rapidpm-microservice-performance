@@ -20,11 +20,10 @@ class RestOverviewSimulation extends Simulation {
       exec(http("request_0001").get(baseURL + Histogramms.LIST_ALL_HISTOGRAMMS))
       //      exec(http("request_0002").get(baseURL + Overview.LIST_ALL_HISTOGRAMMS))
     }
-  private val baseURL: String = "rest/metrics/performance/overview/"
-
+  private val baseURL: String = "rest/metrics/performance/histogramms/"
 
   //  setUp(scn.inject(atOnceUsers(100)).protocols(httpConf))
-  setUp(scn.inject(atOnceUsers(100)).protocols(httpConf))
+  setUp(scn.inject(atOnceUsers(10)).protocols(httpConf))
 
 
   before {
@@ -41,3 +40,5 @@ class RestOverviewSimulation extends Simulation {
   }
 
 }
+
+//http://0.0.0.0:7081/rest/metrics/performance/histogramms/listAllHistogramms
