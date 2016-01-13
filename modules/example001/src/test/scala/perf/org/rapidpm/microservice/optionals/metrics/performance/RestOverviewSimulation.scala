@@ -4,7 +4,6 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import org.rapidpm.microservice.Main
 import org.rapidpm.microservice.Main.{deploy, stop}
-import org.rapidpm.microservice.optionals.metrics.performance.Histogramms
 
 class RestOverviewSimulation extends Simulation {
 
@@ -21,6 +20,7 @@ class RestOverviewSimulation extends Simulation {
       //      exec(http("request_0002").get(baseURL + Overview.LIST_ALL_HISTOGRAMMS))
     }
   private val baseURL: String = "rest/metrics/performance/histogramms/"
+
 
   //  setUp(scn.inject(atOnceUsers(100)).protocols(httpConf))
   setUp(scn.inject(atOnceUsers(10)).protocols(httpConf))
