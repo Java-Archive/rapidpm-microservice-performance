@@ -4,6 +4,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import org.rapidpm.microservice.Main
 import org.rapidpm.microservice.Main.{deploy, stop}
+import org.rapidpm.microservice.optionals.metrics.performance.Histogramms
 
 class RestOverviewSimulation extends Simulation {
 

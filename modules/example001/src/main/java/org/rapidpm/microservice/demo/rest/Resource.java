@@ -9,7 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 /**
- * Created by sven on 27.05.15.
+ * Created by Sven Ruppert on 27.05.15.
  */
 @Path("/test")
 public class Resource {
