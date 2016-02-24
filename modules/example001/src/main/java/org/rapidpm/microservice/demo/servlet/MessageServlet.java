@@ -22,6 +22,7 @@ package org.rapidpm.microservice.demo.servlet;
 
 import org.rapidpm.microservice.demo.service.Service;
 
+import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
@@ -36,10 +37,8 @@ import java.io.PrintWriter;
 @WebServlet(urlPatterns = "/test")
 public class MessageServlet extends HttpServlet {
 
-//  @Inject Service service;
-
   public static final String MESSAGE = "message";
-
+  @Inject Service service;
   private String message;
 
   @Override
@@ -51,8 +50,8 @@ public class MessageServlet extends HttpServlet {
   @Override
   protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
     PrintWriter writer = resp.getWriter();
-//    writer.write(message + " "+  service.doWork());
-    writer.write(message + " " + new Service().doWork());
+    writer.write(message + " " + service.doWork());
+//    writer.write(message + " " + new Service().doWork());
     writer.close();
   }
 
