@@ -27,6 +27,7 @@ import org.rapidpm.microservice.optionals.metrics.performance.Histogramms
 
 class RestOverviewSimulation extends Simulation {
 
+  val baseURL: String = "rest/metrics/performance/histogramms/"
 
   val httpConf = http
     .baseURL("http://" + Main.DEFAULT_HOST + ":" + Main.DEFAULT_REST_PORT + "/") // Here is the root for all relative URLs
@@ -40,7 +41,6 @@ class RestOverviewSimulation extends Simulation {
       exec(http("request_0001").get(baseURL + Histogramms.LIST_ALL_HISTOGRAMMS))
       //      exec(http("request_0002").get(baseURL + Overview.LIST_ALL_HISTOGRAMMS))
     }
-  private val baseURL: String = "rest/metrics/performance/histogramms/"
 
 
   //  setUp(scn.inject(atOnceUsers(100)).protocols(httpConf))
