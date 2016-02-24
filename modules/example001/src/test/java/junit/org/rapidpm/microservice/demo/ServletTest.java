@@ -64,14 +64,16 @@ public class ServletTest {
     System.out.println("\nSending 'GET' request to URL : " + url);
     System.out.println("Response Code : " + responseCode);
 
-    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-    String inputLine;
-    StringBuffer response = new StringBuffer();
+    final StringBuffer response;
+    try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
+      String inputLine;
+      response = new StringBuffer();
 
-    while ((inputLine = in.readLine()) != null) {
-      response.append(inputLine);
+      while ((inputLine = in.readLine()) != null) {
+        response.append(inputLine);
+      }
+      in.close();
     }
-    in.close();
 //    System.out.println("response = " + response);
     Assert.assertEquals("Hello World CDI Service", response.toString());
   }
