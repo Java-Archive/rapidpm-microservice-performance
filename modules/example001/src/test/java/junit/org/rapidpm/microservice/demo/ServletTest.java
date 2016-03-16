@@ -45,6 +45,9 @@ public class ServletTest {
 
   @Before
   public void setUp() throws Exception {
+    System.setProperty(Main.REST_HOST_PROPERTY, "127.0.0.1");
+    System.setProperty(Main.SERVLET_HOST_PROPERTY, "127.0.0.1");
+
     Main.deploy();
   }
 

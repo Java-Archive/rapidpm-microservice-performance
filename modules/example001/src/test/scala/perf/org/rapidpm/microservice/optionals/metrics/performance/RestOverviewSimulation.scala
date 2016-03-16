@@ -30,7 +30,7 @@ class RestOverviewSimulation extends Simulation {
   val baseURL: String = "rest/metrics/performance/histogramms/"
 
   val httpConf = http
-    .baseURL("http://" + Main.DEFAULT_HOST + ":" + Main.DEFAULT_REST_PORT + "/") // Here is the root for all relative URLs
+    .baseURL("http://" + "127.0.0.1" + ":" + Main.DEFAULT_REST_PORT + "/") // Here is the root for all relative URLs
     .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8") // Here are the common headers
     .doNotTrackHeader("1")
     .acceptLanguageHeader("en-US,en;q=0.5")
@@ -48,6 +48,9 @@ class RestOverviewSimulation extends Simulation {
 
 
   before {
+    System.setProperty(Main.REST_HOST_PROPERTY, "127.0.0.1")
+    System.setProperty(Main.SERVLET_HOST_PROPERTY, "127.0.0.1")
+
     println("Simulation is about to start!")
     println("Start MicroService")
     deploy()
