@@ -25,9 +25,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.rapidpm.microservice.Main;
+import org.rapidpm.microservice.test.PortUtils;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+
 
 public class RestTest {
 
@@ -36,6 +38,7 @@ public class RestTest {
     System.setProperty(Main.REST_HOST_PROPERTY, "127.0.0.1");
     System.setProperty(Main.SERVLET_HOST_PROPERTY, "127.0.0.1");
 
+    System.setProperty(Main.REST_PORT_PROPERTY, new PortUtils().nextFreePortForTest() + "");
     Main.deploy();
   }
 
