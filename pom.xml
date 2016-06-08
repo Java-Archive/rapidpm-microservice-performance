@@ -31,11 +31,12 @@
 
 
   <groupId>org.rapidpm.microservice</groupId>
-  <artifactId>rapidpm-microservice-performance</artifactId>
+  <artifactId>microservice-perf</artifactId>
   <packaging>pom</packaging>
   <version>0.5.0-SNAPSHOT</version>
+
   <modules>
-    <module>modules</module>
+    <module>core</module>
   </modules>
 
 
@@ -44,6 +45,7 @@
     <name>RapidPM</name>
     <url>http://www.rapidpm.org</url>
   </organization>
+  <name>RapidPM MicroService Performance Tests</name>
   <scm>
     <url>https://github.com/RapidPM/rapidpm-microservice-performance</url>
     <connection>scm:git:https://github.com/RapidPM/rapidpm-microservice-performance.git</connection>
@@ -62,11 +64,11 @@
   </developers>
   <issueManagement>
     <system>Github</system>
-    <url>https://github.com/RapidPM/rapidpm-microservice-performance/issues</url>
+    <url>https://github.com/JavaMicroService/rapidpm-microservice-performance/issues</url>
   </issueManagement>
   <ciManagement>
     <system>TravisCI</system>
-    <url>https://travis-ci.org/RapidPM/rapidpm-microservice/performance</url>
+    <url>https://travis-ci.org/JavaMicroService/rapidpm-microservice/performance</url>
   </ciManagement>
   <licenses>
     <license>
@@ -76,6 +78,14 @@
       <comments>A business-friendly OSS license</comments>
     </license>
   </licenses>
+
+
+
+  <dependencyManagement>
+    <dependencies>
+
+    </dependencies>
+  </dependencyManagement>
 
 
   <dependencies>
@@ -98,7 +108,6 @@
       <artifactId>fluent-hc</artifactId>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>io.gatling.highcharts</groupId>
       <artifactId>gatling-charts-highcharts</artifactId>
