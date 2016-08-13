@@ -38,7 +38,7 @@ public class RestTest {
     System.setProperty(Main.REST_HOST_PROPERTY, "127.0.0.1");
     System.setProperty(Main.SERVLET_HOST_PROPERTY, "127.0.0.1");
 
-    System.setProperty(Main.REST_PORT_PROPERTY, new PortUtils().nextFreePortForTest() + "");
+    System.setProperty(MainUndertow.REST_PORT_PROPERTY, new PortUtils().nextFreePortForTest() + "");
     Main.deploy();
   }
 

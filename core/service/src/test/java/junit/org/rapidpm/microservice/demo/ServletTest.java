@@ -49,11 +49,11 @@ public class ServletTest {
         + Main.MYAPP
         + MessageServlet.class.getAnnotation(WebServlet.class).urlPatterns()[0];
 
-    System.setProperty(Main.REST_HOST_PROPERTY, "127.0.0.1");
-    System.setProperty(Main.SERVLET_HOST_PROPERTY, "127.0.0.1");
+    System.setProperty(MainUndertow.REST_HOST_PROPERTY, "127.0.0.1");
+    System.setProperty(MainUndertow.SERVLET_HOST_PROPERTY, "127.0.0.1");
 
-    System.setProperty(Main.REST_PORT_PROPERTY, restPort + "");
-    System.setProperty(Main.SERVLET_PORT_PROPERTY, servletPort + "");
+    System.setProperty(MainUndertow.REST_PORT_PROPERTY, restPort + "");
+    System.setProperty(MainUndertow.SERVLET_PORT_PROPERTY, servletPort + "");
   }
 
   @Before
