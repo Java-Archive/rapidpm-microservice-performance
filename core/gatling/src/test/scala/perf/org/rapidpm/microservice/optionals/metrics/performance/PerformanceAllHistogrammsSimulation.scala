@@ -22,6 +22,7 @@ package perf.org.rapidpm.microservice.optionals.metrics.performance
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import org.rapidpm.microservice.Main
+import org.rapidpm.microservice.MainUndertow.DEFAULT_REST_PORT
 import org.rapidpm.microservice.optionals.metrics.performance.Histogramms
 
 class PerformanceAllHistogrammsSimulation extends Simulation {

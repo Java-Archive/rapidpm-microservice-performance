@@ -3,7 +3,8 @@ package perf.org.rapidpm.microservice.optionals.metrics.performance
 import io.gatling.core.Predef._
 import io.gatling.core.scenario.Simulation
 import io.gatling.http.Predef._
-import org.rapidpm.microservice.Main
+import org.rapidpm.microservice.{Main, MainUndertow}
+import org.rapidpm.microservice.MainUndertow.DEFAULT_REST_PORT
 import org.rapidpm.microservice.optionals.metrics.performance.Histogramms
 
 /**
@@ -43,7 +44,7 @@ class RestTestPerformanceSimulation extends Simulation {
   val baseURL: String = "rest/metrics/performance/histogramms/"
 
   val httpConf = http
-    .baseURL("http://" + "127.0.0.1" + ":" + Main.DEFAULT_REST_PORT + "/") // Here is the root for all relative URLs
+    .baseURL("http://" + "127.0.0.1" + ":" + MainUndertow.DEFAULT_REST_PORT + "/") // Here is the root for all relative URLs
     .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8") // Here are the common headers
     .doNotTrackHeader("1")
     .acceptLanguageHeader("en-US,en;q=0.5")

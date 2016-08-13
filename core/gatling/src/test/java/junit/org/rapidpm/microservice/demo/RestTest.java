@@ -26,6 +26,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.rapidpm.dependencies.core.net.PortUtils;
 import org.rapidpm.microservice.Main;
+import org.rapidpm.microservice.MainUndertow;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -35,10 +36,10 @@ public class RestTest {
 
   @Before
   public void setUp() throws Exception {
-    System.setProperty(Main.REST_HOST_PROPERTY, "127.0.0.1");
-    System.setProperty(Main.SERVLET_HOST_PROPERTY, "127.0.0.1");
+    System.setProperty(MainUndertow.REST_HOST_PROPERTY, "127.0.0.1");
+    System.setProperty(MainUndertow.SERVLET_HOST_PROPERTY, "127.0.0.1");
 
-    System.setProperty(Main.REST_PORT_PROPERTY, new PortUtils().nextFreePortForTest() + "");
+    System.setProperty(MainUndertow.REST_PORT_PROPERTY, new PortUtils().nextFreePortForTest() + "");
     Main.deploy();
   }
 
