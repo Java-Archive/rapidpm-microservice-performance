@@ -13,21 +13,10 @@
 
 
   <dependencies>
-
-    <!--<dependency>-->
-      <!--<groupId>org.rapidpm.microservice</groupId>-->
-      <!--<artifactId>microservice-perf-core-service</artifactId>-->
-    <!--</dependency>-->
-
     <dependency>
-      <groupId>org.zeroturnaround</groupId>
-      <artifactId>zt-exec</artifactId>
-      <version>1.9</version>
-    </dependency>
-    <dependency>
-      <groupId>org.zeroturnaround</groupId>
-      <artifactId>zt-process-killer</artifactId>
-      <version>1.4</version>
+      <groupId>org.rapidpm.microservice</groupId>
+      <artifactId>microservice-perf-core-service</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -36,14 +25,33 @@
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
+
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
+            <ref combine.children="append"/>
           </descriptorRefs>
         </configuration>
       </plugin>
       <plugin>
         <groupId>net.alchim31.maven</groupId>
         <artifactId>scala-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>scala-compile-first</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>add-source</goal>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>scala-test-compile</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>io.gatling</groupId>
@@ -53,6 +61,8 @@
           <!--<simulationClass>perf.org.rapidpm.microservice.optionals.metrics.performance.RestOverviewSimulation</simulationClass>-->
           <simulationsFolder>src/test/scala</simulationsFolder>
           <configFolder>src/test/resources</configFolder>
+          <runMultipleSimulations>true</runMultipleSimulations>
+
         </configuration>
         <executions>
           <execution>
