@@ -1,15 +1,11 @@
 package perf.org.rapidpm.microservice.optionals.metrics.performance;
 
-import io.gatling.app.Gatling;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 import org.rapidpm.ddi.DI;
+import org.rapidpm.dependencies.core.net.PortUtils;
 import org.rapidpm.microservice.Main;
-
-import static org.junit.Assert.*;
-import static org.assertj.core.api.Assertions.*;
+import org.rapidpm.microservice.MainUndertow;
 
 /**
  * Copyright (C) 2010 RapidPM
@@ -23,10 +19,9 @@ import static org.assertj.core.api.Assertions.*;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Created by RapidPM - Team on 08.06.16.
+ * Created by RapidPM - Team on 20.08.16.
  */
-public class StartServicesTest {
-
+public class BaseGatlingTest {
 
   @Before
   public void setUp() throws Exception {
@@ -34,32 +29,31 @@ public class StartServicesTest {
     DI.activatePackages("org.rapidpm");
     DI.activatePackages("junit.org.rapidpm");
     DI.activatePackages("perf.org.rapidpm");
-
+    System.setProperty(MainUndertow.REST_PORT_PROPERTY, new PortUtils().nextFreePortForTest() + "");
     Main.deploy();
   }
 
   @After
   public void tearDown() throws Exception {
+    Main.stop();
     DI.clearReflectionModel();
   }
 
-  @Test
-  public void test001() throws Exception {
-    final String[] args1 = new String[4];
-    args1[0] = "--results-folder";
-    args1[1] = "target/gatling/";
+
+  protected String[] createBasicArgs(final String className) {
+    final String[] args = new String[4];
+    args[0] = "--results-folder"; //TODO global Constants
+    args[1] = "target/gatling/"; //TODO global Constants
 
 //    args1[2] = "--simulations-folder";
 //    args1[3] = "src/test/scala";
 
-
 //    args1[2] = "--simulation";
 //    args1[3] = RestOverviewSimulation.class.getName();
 //    args1[3] = "perf.org.rapidpm.microservice.optionals.metrics.performance.PerformanceAllHistogrammsSimulation";
-    args1[2] = "--simulation";
-    args1[3] = "perf.org.rapidpm.microservice.optionals.metrics.performance.RestTestPerformanceSimulation";
-
-    Gatling.main(args1);
-    Assert.assertFalse(false);
+    args[2] = "--simulation";
+    args[3] = className;
+    return args;
   }
+
 }

@@ -21,55 +21,64 @@ package perf.org.rapidpm.microservice.optionals.metrics.performance
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import org.rapidpm.microservice.Main
+import io.gatling.http.protocol.HttpProtocolBuilder
+import org.rapidpm.ddi.DI
+import org.rapidpm.dependencies.core.net.PortUtils
 import org.rapidpm.microservice.optionals.metrics.performance.Histogramms
+import org.rapidpm.microservice.{Main, MainUndertow}
 
 class PerformanceAllHistogrammsSimulation extends Simulation {
 
   val baseURL: String = "rest/metrics/performance/histogramms/"
+  val port: String = "%d".format(new PortUtils().nextFreePortForTest())
 
-   val httpConf = http
-    .baseURL("http://" + "127.0.0.1" + ":" + Main.DEFAULT_REST_PORT + "/") // Here is the root for all relative URLs
-    .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8") // Here are the common headers
-    .doNotTrackHeader("1")
-    .acceptLanguageHeader("en-US,en;q=0.5")
+
+  val httpConf: HttpProtocolBuilder = http
+    .baseURL("http://" + "127.0.0.1" + ":" + port + "/") // Here is the root for all relative URLs
     .acceptEncodingHeader("gzip, deflate")
-    .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0")
+
   val scn = scenario("Overview Test")
-//    .repeat(100000) {
-    .repeat(10000) {
-      exec(http(this.getClass.getSimpleName)
-        .get(baseURL + Histogramms.LIST_ALL_HISTOGRAMMS)
-        .check(status.is(200))
-      )
-      //      exec(http("request_0002").get(baseURL + Overview.LIST_ALL_HISTOGRAMMS))
-    }
+    //    .repeat(100000) {
+    .repeat(100) {
+    exec(http(this.getClass.getSimpleName)
+      .get(baseURL + Histogramms.LIST_ALL_HISTOGRAMMS)
+      .check(status.is(200))
+    )
+    //      exec(http("request_0002").get(baseURL + Overview.LIST_ALL_HISTOGRAMMS))
+  }
 
 
   //  setUp(scn.inject(atOnceUsers(100)).protocols(httpConf))
   setUp(scn.inject(atOnceUsers(10)).protocols(httpConf))
 
 
-//  before {
-////    System.setProperty(Main.REST_HOST_PROPERTY, "127.0.0.1")
-////    System.setProperty(Main.SERVLET_HOST_PROPERTY, "127.0.0.1")
-//    //    System.out.println(Resource.class)
-////    DI.clearReflectionModel()
-////    DI.activatePackages("org.rapidpm")
-////    DI.activatePackages("junit.org.rapidpm")
-////    DI.activatePackages("perf.org.rapidpm")
-//    println("Simulation is about to start!")
-//    println("Start MicroService")
-////    deploy()
-//    println("MicroService Started")
-//  }
-//
-//  after {
-//    println("Stop MicroService")
-////    stop()
-////    DI.clearReflectionModel()
-//    println("Simulation is finished!")
-//  }
+  before {
+
+
+    //port = System.getProperty(MainUndertow.REST_PORT_PROPERTY)
+    System.setProperty(MainUndertow.REST_HOST_PROPERTY, "127.0.0.1")
+    System.setProperty(MainUndertow.SERVLET_HOST_PROPERTY, "127.0.0.1")
+    //
+    System.setProperty(MainUndertow.REST_PORT_PROPERTY, port)
+
+    DI.clearReflectionModel()
+    DI.bootstrap()
+//    DI.activatePackages("org.rapidpm")
+//    DI.activatePackages("junit.org.rapidpm")
+//    DI.activatePackages("perf.org.rapidpm")
+    println("Simulation is about to start!")
+    println("Start MicroService")
+    Main.deploy()
+    println("MicroService Started")
+  }
+
+  after {
+    println("Stop MicroService")
+    Main.stop()
+    DI.clearReflectionModel()
+    println("Simulation is finished!")
+  }
+
 
 }
 

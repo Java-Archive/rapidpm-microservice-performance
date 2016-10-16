@@ -24,6 +24,7 @@ import org.apache.http.client.fluent.Request;
 import org.junit.*;
 import org.rapidpm.dependencies.core.net.PortUtils;
 import org.rapidpm.microservice.Main;
+import org.rapidpm.microservice.MainUndertow;
 import org.rapidpm.microservice.demo.servlet.MessageServlet;
 
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +34,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-
+@Ignore
 public class ServletTest {
 
   private static String url;
@@ -46,14 +47,14 @@ public class ServletTest {
     final int servletPort = portUtils.nextFreePortForTest();
 
     url = "http://127.0.0.1:" + servletPort
-        + Main.MYAPP
+        + MainUndertow.MYAPP
         + MessageServlet.class.getAnnotation(WebServlet.class).urlPatterns()[0];
 
-    System.setProperty(Main.REST_HOST_PROPERTY, "127.0.0.1");
-    System.setProperty(Main.SERVLET_HOST_PROPERTY, "127.0.0.1");
+    System.setProperty(MainUndertow.REST_HOST_PROPERTY, "127.0.0.1");
+    System.setProperty(MainUndertow.SERVLET_HOST_PROPERTY, "127.0.0.1");
 
-    System.setProperty(Main.REST_PORT_PROPERTY, restPort + "");
-    System.setProperty(Main.SERVLET_PORT_PROPERTY, servletPort + "");
+    System.setProperty(MainUndertow.REST_PORT_PROPERTY, restPort + "");
+    System.setProperty(MainUndertow.SERVLET_PORT_PROPERTY, servletPort + "");
   }
 
   @Before

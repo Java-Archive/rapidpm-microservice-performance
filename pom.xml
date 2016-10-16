@@ -83,7 +83,11 @@
 
   <dependencyManagement>
     <dependencies>
-
+      <dependency>
+        <groupId>org.rapidpm.microservice</groupId>
+        <artifactId>microservice-perf-core-service</artifactId>
+        <version>0.5.0-SNAPSHOT</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -114,4 +118,48 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+
+  <profiles>
+    <profile>
+      <id>qm-qs-jacoco-junit</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <inherited>true</inherited>
+            <configuration>
+              <!--<systemPropertyVariables>-->
+                <!--<jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>-->
+              <!--</systemPropertyVariables>-->
+              <includes>
+                <include>**/junit/**</include>
+                <include>**/perf/**</include>
+              </includes>
+              <!--<excludes>-->
+                <!--<exclude>**/*ini/**</exclude>-->
+                <!--<exclude>**/*txt/**</exclude>-->
+                <!--<exclude>**/*.jpg</exclude>-->
+              <!--</excludes>-->
+              <!--<argLine>-Xmx286m</argLine>-->
+              <!--<forkCount>2.5C</forkCount>-->
+              <!--<reuseForks>false</reuseForks>-->
+
+              <!--<reportFormat>xml</reportFormat>-->
+              <!--<reportFormat>html</reportFormat>-->
+              <!--<testSourceDirectory>${project.build.directory}/generated-test-sources/test-annotations</testSourceDirectory>-->
+              <!--<classesDirectory>target/generated-classes/emma/classes</classesDirectory>-->
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+
 </project>
